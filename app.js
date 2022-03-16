@@ -140,7 +140,11 @@ app.post('/delete', function (req, res) {
     }
 })
 
-app.listen(3500, function () {
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3500;
+}
+app.listen(port, function () {
     console.log('server running on port 3500')
 });
 
