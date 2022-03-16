@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/todolist_favicon.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>ToDo List</title>
+</head>
+<body>
+    <div class="todolist-box">
+        <div class="box" id="heading">
+            <h1> <%= kindOfDay %> </h1>
+        </div>
+        
+        <div class="box">
+            <% newListItems.forEach(function(item){ %>
+                <form action="/delete" method="post">
+                    <div class="item">
+                        <input type="checkbox" name="checkbox" value="<%= item._id %>" onchange="this.form.submit()">
+                        <p> <%= item.name %> </p>
+                    </div>
+                    <input type="hidden" name="listName" value="<%=kindOfDay %>">
+                </form>
+            <% }) %>
+            
+            <form class="item" action="/" method="post">
+                <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+                <button type="submit" name="list" value="<%= kindOfDay %>">+</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
